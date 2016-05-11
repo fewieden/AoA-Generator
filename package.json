@@ -1,0 +1,25 @@
+{
+  "name": "aoa-generator",
+  "version": "1.0.0",
+  "description": "Generator for Attestation of Activities documents (Regulation (EC) 561/2006 or the AETR)",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . Attestation_of_Activities"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fewieden/AoA-Generator.git"
+  },
+  "author": "Felix Wiedenbach",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fewieden/AoA-Generator/issues"
+  },
+  "homepage": "https://github.com/fewieden/AoA-Generator#readme",
+  "devDependencies": {
+    "asar": "^0.11.0",
+    "electron-packager": "^7.0.1",
+    "electron-prebuilt": "^1.0.1"
+  }
+}

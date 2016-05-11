@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        const remote = require('electron').remote;
+        const Menu = remote.Menu;
+        const template = require('../modules/menu.js');
+        //const lang = require('../ressources/lang/' + remote.getGlobal('config').lang + '.json');
+
+        let menu = Menu.buildFromTemplate(template);
+        Menu.setApplicationMenu(menu);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
