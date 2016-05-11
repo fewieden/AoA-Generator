@@ -1,3 +1,20 @@
 {
-  "lang": "en"
+  "lang": "en",
+  "dropdowns": [
+    "company",
+    "driver",
+    "clerk"
+  ],
+  "company": [
+    "Company A",
+    "Company B",
+    "Company C"
+  ],
+  "driver": [
+    "Driver Hans",
+    "Driver Klaus"
+  ],
+  "clerk": [
+    "Clerk Ute"
+  ]
 }

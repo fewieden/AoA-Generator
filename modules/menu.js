@@ -9,15 +9,15 @@ let menu = [
         label: i18n('MENU_EDIT'),
         submenu: [
             {
-                label: i18n('MENU_COMPANY'),
+                label: i18n('COMPANY'),
                 role: 'edit_company'
             },
             {
-                label: i18n('MENU_DRIVER'),
+                label: i18n('DRIVER'),
                 role: 'edit_driver'
             },
             {
-                label: i18n('MENU_CLERK'),
+                label: i18n('CLERK'),
                 role: 'edit_clerk'
             },
             {
@@ -43,15 +43,15 @@ let menu = [
         label: i18n('MENU_ADD'),
         submenu: [
             {
-                label: i18n('MENU_COMPANY'),
+                label: i18n('COMPANY'),
                 role: 'add_company'
             },
             {
-                label: i18n('MENU_DRIVER'),
+                label: i18n('DRIVER'),
                 role: 'add_driver'
             },
             {
-                label: i18n('MENU_CLERK'),
+                label: i18n('CLERK'),
                 role: 'add_clerk'
             }
         ]

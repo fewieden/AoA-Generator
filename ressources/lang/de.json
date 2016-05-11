@@ -1,9 +1,9 @@
 {
   "APP_NAME": "Freibescheinigungen",
   "MENU_EDIT": "Editieren",
-  "MENU_COMPANY": "Firma",
-  "MENU_DRIVER": "Fahrer",
-  "MENU_CLERK": "Sachbearbeiter",
+  "COMPANY": "Firma",
+  "DRIVER": "Fahrer",
+  "CLERK": "Sachbearbeiter",
   "MENU_SETTINGS": "Einstellungen",
   "MENU_GENERATE": "Generieren",
   "MENU_GENERATE_AND_PRINT": "Generieren und Drucken",
@@ -15,5 +15,6 @@
   "MENU_HELP": "Hilfe",
   "MENU_ABOUT": "Über",
   "MENU_REPORT_BUGS": "Fehler melden",
-  "MENU_ADD_LANGUAGE": "Sprache hinzufügen"
+  "MENU_ADD_LANGUAGE": "Sprache hinzufügen",
+  "DROPDOWN_CHOOSE": "Auswählen"
 }

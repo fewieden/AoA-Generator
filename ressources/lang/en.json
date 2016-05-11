@@ -1,9 +1,9 @@
 {
   "APP_NAME": "Attestion of Activities",
   "MENU_EDIT": "Edit",
-  "MENU_COMPANY": "Company",
-  "MENU_DRIVER": "Driver",
-  "MENU_CLERK": "Clerk",
+  "COMPANY": "Company",
+  "DRIVER": "Driver",
+  "CLERK": "Clerk",
   "MENU_SETTINGS": "Settings",
   "MENU_GENERATE": "Generate",
   "MENU_GENERATE_AND_PRINT": "Generate and Print",
@@ -15,5 +15,6 @@
   "MENU_HELP": "Help",
   "MENU_ABOUT": "About",
   "MENU_REPORT_BUGS": "Report Bugs",
-  "MENU_ADD_LANGUAGE": "Add Language"
+  "MENU_ADD_LANGUAGE": "Add Language",
+  "DROPDOWN_CHOOSE": "Choose"
 }

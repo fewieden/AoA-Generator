@@ -6,13 +6,65 @@
         const remote = require('electron').remote;
         const Menu = remote.Menu;
         const template = require('../modules/menu.js');
-        //const lang = require('../ressources/lang/' + remote.getGlobal('config').lang + '.json');
+        const i18n = require('../modules/i18n.js').i18n;
 
         let menu = Menu.buildFromTemplate(template);
         Menu.setApplicationMenu(menu);
+
+        let dropdowns = remote.getGlobal('config')['dropdowns'];
     </script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            margin: 0px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        #dropdowns {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: lightgray;
+        }
+
+        #dropdowns > div > label {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
+<section id="dropdowns">
+    <script>
+        for(var i in dropdowns){
+            var div = document.createElement('div');
 
+            var label = document.createElement('label');
+            label.setAttribute('for', dropdowns[i]);
+            label.textContent = i18n(dropdowns[i].toUpperCase());
+            div.appendChild(label);
+
+            var select = document.createElement('select');
+            select.setAttribute('id', dropdowns[i]);
+
+            var placeholder = document.createElement('option');
+            placeholder.setAttribute('selected', 'selected');
+            placeholder.style.display = 'none';
+            placeholder.textContent = i18n('DROPDOWN_CHOOSE');
+            select.appendChild(placeholder);
+
+            var options = remote.getGlobal('config')[dropdowns[i]];
+            for(var j in options){
+                var option = document.createElement('option');
+                option.setAttribute('value', options[j]);
+                option.textContent = options[j];
+                select.appendChild(option);
+            }
+
+            div.appendChild(select);
+            document.getElementById('dropdowns').appendChild(div);
+        }
+    </script>
+</section>
 </body>
 </html>
