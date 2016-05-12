@@ -67,7 +67,7 @@ let menu = [
                         focusedWindow.reload();
                 }
             },
-            {
+            /*{
                 label: i18n('MENU_FULLSCREEN'),
                 accelerator: (function () {
                     if (process.platform == 'darwin')
@@ -79,7 +79,7 @@ let menu = [
                     if (focusedWindow)
                         focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
                 }
-            },
+            },*/
             {
                 label: i18n('MENU_DEVELOPER'),
                 accelerator: (function () {
