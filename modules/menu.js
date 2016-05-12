@@ -40,7 +40,7 @@ let menu = [
         ]
     },
     {
-        label: i18n('MENU_ADD'),
+        label: i18n('ADD'),
         submenu: [
             {
                 label: i18n('COMPANY'),

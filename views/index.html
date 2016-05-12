@@ -12,6 +12,96 @@
         Menu.setApplicationMenu(menu);
 
         let dropdowns = remote.getGlobal('config')['dropdowns'];
+
+        function init(){
+            initDropdowns();
+            addRow();
+            addMore();
+        }
+
+        function initDropdowns(){
+            for(var i in dropdowns){
+                var div = document.createElement('div');
+
+                var label = document.createElement('label');
+                label.setAttribute('for', dropdowns[i]);
+                label.textContent = i18n(dropdowns[i].toUpperCase());
+                div.appendChild(label);
+
+                var select = document.createElement('select');
+                select.setAttribute('id', dropdowns[i]);
+
+                var placeholder = document.createElement('option');
+                placeholder.setAttribute('selected', 'selected');
+                placeholder.style.display = 'none';
+                placeholder.textContent = i18n('DROPDOWN_CHOOSE');
+                select.appendChild(placeholder);
+
+                var options = remote.getGlobal('config')[dropdowns[i]];
+                for(var j in options){
+                    var option = document.createElement('option');
+                    option.setAttribute('value', options[j]);
+                    option.textContent = options[j];
+                    select.appendChild(option);
+                }
+
+                div.appendChild(select);
+                document.getElementById('dropdowns').appendChild(div);
+            }
+        }
+
+        function addRow(){
+            var row = document.createElement('div');
+            row.classList.add('row');
+            var label_from = document.createElement('label');
+            label_from.textContent = i18n('ROW_FROM');
+            row.appendChild(label_from);
+            var input_time_from = document.createElement('input');
+            input_time_from.setAttribute('type', 'text');
+            input_time_from.setAttribute('name', 'input_time_from');
+            input_time_from.setAttribute('placeholder', i18n('ROW_TIME'));
+            row.appendChild(input_time_from);
+            var input_date_from = document.createElement('input');
+            input_date_from.setAttribute('type', 'date');
+            input_date_from.setAttribute('name', 'input_date_from');
+            input_date_from.setAttribute('placeholder', i18n('ROW_DATE'));
+            row.appendChild(input_date_from);
+
+            var label_to = document.createElement('label');
+            label_to.textContent = i18n('ROW_TO');
+            row.appendChild(label_to);
+            var input_time_to = document.createElement('input');
+            input_time_to.setAttribute('type', 'text');
+            input_time_to.setAttribute('name', 'input_time_to');
+            input_time_to.setAttribute('placeholder', i18n('ROW_TIME'));
+            row.appendChild(input_time_to);
+            var input_date_to = document.createElement('input');
+            input_date_to.setAttribute('type', 'date');
+            input_date_to.setAttribute('name', 'input_date_to');
+            input_date_to.setAttribute('placeholder', i18n('ROW_DATE'));
+            row.appendChild(input_date_to);
+
+            var remove = document.createElement('button');
+            remove.classList.add('btn', 'btn-remove');
+            remove.textContent = i18n('ROW_REMOVE');
+            remove.addEventListener('click', deleteRow);
+            row.appendChild(remove);
+
+            document.getElementById('certificates').appendChild(row);
+        }
+
+        function deleteRow(event){
+            event.target.removeEventListener('click', deleteRow);
+            document.getElementById('certificates').removeChild(event.target.parentNode);
+        }
+
+        function addMore(){
+            var button = document.createElement('button');
+            button.classList.add('btn', 'btn-add');
+            button.textContent = i18n('ADD');
+            button.addEventListener('click', addRow);
+            document.getElementById('add_more').appendChild(button);
+        }
     </script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <style>
@@ -19,6 +109,7 @@
             margin: 0px;
             font-family: 'Open Sans', sans-serif;
         }
+
         #dropdowns {
             width: 100%;
             height: 40px;
@@ -31,40 +122,56 @@
         #dropdowns > div > label {
             margin-right: 5px;
         }
+
+        #certificates {
+            height: calc(100% - 90px);
+            overflow-y: auto;
+        }
+
+        .row {
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: calc(100% - 20px);
+            border-bottom: 1px solid lightgray;
+        }
+
+        .row > input {
+            height: 20px;
+        }
+
+        .btn {
+            background: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .btn-remove {
+            border: 2px solid darkred;
+            border-radius: 5px;
+        }
+
+        #add_more {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-add {
+            border: 2px solid lightgreen;
+            border-radius: 5px;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
-<section id="dropdowns">
+    <section id="dropdowns"></section>
+    <section id="certificates"></section>
+    <section id="add_more"></section>
     <script>
-        for(var i in dropdowns){
-            var div = document.createElement('div');
-
-            var label = document.createElement('label');
-            label.setAttribute('for', dropdowns[i]);
-            label.textContent = i18n(dropdowns[i].toUpperCase());
-            div.appendChild(label);
-
-            var select = document.createElement('select');
-            select.setAttribute('id', dropdowns[i]);
-
-            var placeholder = document.createElement('option');
-            placeholder.setAttribute('selected', 'selected');
-            placeholder.style.display = 'none';
-            placeholder.textContent = i18n('DROPDOWN_CHOOSE');
-            select.appendChild(placeholder);
-
-            var options = remote.getGlobal('config')[dropdowns[i]];
-            for(var j in options){
-                var option = document.createElement('option');
-                option.setAttribute('value', options[j]);
-                option.textContent = options[j];
-                select.appendChild(option);
-            }
-
-            div.appendChild(select);
-            document.getElementById('dropdowns').appendChild(div);
-        }
+        init();
     </script>
-</section>
 </body>
 </html>

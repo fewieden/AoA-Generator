@@ -7,7 +7,7 @@
   "MENU_SETTINGS": "Settings",
   "MENU_GENERATE": "Generate",
   "MENU_GENERATE_AND_PRINT": "Generate and Print",
-  "MENU_ADD": "Add",
+  "ADD": "Add",
   "MENU_VIEW": "View",
   "MENU_RELOAD": "Reload",
   "MENU_FULLSCREEN": "Fullscreen",
@@ -16,5 +16,10 @@
   "MENU_ABOUT": "About",
   "MENU_REPORT_BUGS": "Report Bugs",
   "MENU_ADD_LANGUAGE": "Add Language",
-  "DROPDOWN_CHOOSE": "Choose"
+  "DROPDOWN_CHOOSE": "Choose",
+  "ROW_FROM": "From",
+  "ROW_TO": "To",
+  "ROW_TIME": "Time",
+  "ROW_DATE": "Date",
+  "ROW_REMOVE": "Remove"
 }

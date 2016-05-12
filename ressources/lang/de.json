@@ -7,7 +7,7 @@
   "MENU_SETTINGS": "Einstellungen",
   "MENU_GENERATE": "Generieren",
   "MENU_GENERATE_AND_PRINT": "Generieren und Drucken",
-  "MENU_ADD": "Hinzufügen",
+  "ADD": "Hinzufügen",
   "MENU_VIEW": "Ansicht",
   "MENU_RELOAD": "Aktualisieren",
   "MENU_FULLSCREEN": "Vollbild",
@@ -16,5 +16,10 @@
   "MENU_ABOUT": "Über",
   "MENU_REPORT_BUGS": "Fehler melden",
   "MENU_ADD_LANGUAGE": "Sprache hinzufügen",
-  "DROPDOWN_CHOOSE": "Auswählen"
+  "DROPDOWN_CHOOSE": "Auswählen",
+  "ROW_FROM": "Von",
+  "ROW_TO": "Bis",
+  "ROW_TIME": "Uhrzeit",
+  "ROW_DATE": "Datum",
+  "ROW_REMOVE": "Entfernen"
 }
