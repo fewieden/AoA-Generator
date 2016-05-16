@@ -1,0 +1,116 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="script" href="i18n.js">
+
+<dom-module id="aoa-main">
+    <template>
+        <style is="custom-style">
+            #dropdowns {
+                width: 100%;
+                height: 60px;
+                display: flex;
+                justify-content: space-around;
+                align-items: flex-start;
+                background-color: #0d47a1;
+            }
+
+            paper-dropdown-menu {
+                --paper-input-container-label: {
+                    color: white;
+                };
+                --paper-input-container-input: {
+                    color: white;
+                };
+            }
+
+            #certificates {
+                height: calc(100% - 110px);
+                overflow-y: auto;
+            }
+
+            .row {
+                padding: 10px;
+                display: flex;
+                justify-content: space-around;
+                width: calc(100% - 20px);
+                border-bottom: 1px solid lightgray;
+                align-items: flex-end;
+            }
+
+            .row > label {
+                padding-bottom: 10px;
+            }
+
+            #add_more {
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+
+            <section id="dropdowns">
+                <template is="dom-repeat" items="{{dropdowns}}" as="dropdown">
+                    <paper-dropdown-menu label="{{translate(dropdown.key)}}">
+                        <paper-listbox class="dropdown-content">
+                            <template is="dom-repeat" items="{{dropdown.items}}">
+                                <paper-item>{{item}}</paper-item>
+                            </template>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                </template>
+            </section>
+
+            <section id="certificates">
+                <template is="dom-repeat" items="{{rows}}">
+                    <div class="row">
+                        <label>{{translate('ROW_FROM')}}</label>
+                        <paper-input type="text" label="{{translate('ROW_TIME')}}"></paper-input>
+                        <paper-input type="date" label="{{translate('ROW_DATE')}}"></paper-input>
+                        <label>{{translate('ROW_TO')}}</label>
+                        <paper-input type="text" label="{{translate('ROW_TIME')}}"></paper-input>
+                        <paper-input type="date" label="{{translate('ROW_DATE')}}"></paper-input>
+                        <paper-button raised on-tap="deleteRow">{{translate('ROW_REMOVE')}}</paper-button>
+                    </div>
+                </template>
+            </section>
+
+            <section id="add_more">
+                <paper-button id="add_row" raised on-tap="addRow">{{translate('ADD')}}</paper-button>
+            </section>
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: 'aoa-main',
+        properties: {
+            dropdowns: {
+                type: Array
+            },
+            rows: {
+                type: Array,
+                value: function(){
+                    return [];
+                }
+            }
+        },
+        ready: function(){
+            this.addRow();
+        },
+        translate: function(key){
+            return i18n(key);
+        },
+        addRow: function(){
+            this.push('rows', {});
+        },
+        deleteRow: function(event){
+            var index = this.rows.indexOf(event.model.item);
+            this.splice('rows', index, 1);
+        }
+    });
+</script>

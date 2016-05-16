@@ -1,0 +1,17 @@
+{
+  "key": "COMPANY",
+  "items": [],
+  "template": {
+    "name": "",
+    "address": {
+      "street": "",
+      "house_number": "",
+      "city": "",
+      "postcode": "",
+      "country": ""
+    },
+    "phone": "",
+    "fax": "",
+    "email": ""
+  }
+}

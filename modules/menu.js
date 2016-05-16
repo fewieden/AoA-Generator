@@ -6,25 +6,99 @@ const i18n = require('./i18n.js').i18n;
 
 let menu = [
     {
+        label: i18n('APP_NAME'),
+        submenu: [
+            {
+                label: i18n('MENU_HOME'),
+                accelerator: 'Esc',
+                click: function(){
+                    document.dispatchEvent(new CustomEvent("menu", {
+                        detail: {
+                            message: {
+                                'page':'main'
+                            },
+                            time: new Date()
+                        },
+                        bubbles: false,
+                        cancelable: true
+                    }));
+                },
+                role: 'home'
+            }
+        ]
+    },
+    {
         label: i18n('MENU_EDIT'),
         submenu: [
             {
                 label: i18n('COMPANY'),
+                click: function(){
+                    document.dispatchEvent(new CustomEvent("menu", {
+                        detail: {
+                            message: {
+                                'page':'edit',
+                                'tab': 'company'
+                            },
+                            time: new Date()
+                        },
+                        bubbles: false,
+                        cancelable: true
+                    }));
+                },
                 role: 'edit_company'
             },
             {
                 label: i18n('DRIVER'),
+                click: function(){
+                    document.dispatchEvent(new CustomEvent("menu", {
+                        detail: {
+                            message: {
+                                'page':'edit',
+                                'tab': 'driver'
+                            },
+                            time: new Date()
+                        },
+                        bubbles: false,
+                        cancelable: true
+                    }));
+                },
                 role: 'edit_driver'
             },
             {
                 label: i18n('CLERK'),
+                click: function(){
+                    document.dispatchEvent(new CustomEvent("menu", {
+                        detail: {
+                            message: {
+                                'page':'edit',
+                                'tab': 'clerk'
+                            },
+                            time: new Date()
+                        },
+                        bubbles: false,
+                        cancelable: true
+                    }));
+                },
                 role: 'edit_clerk'
             },
             {
                 type: 'separator'
             },
             {
-                label: i18n('MENU_SETTINGS'),
+                label: i18n('SETTINGS'),
+                click: function(){
+                    document.dispatchEvent(new CustomEvent("menu", {
+                        detail: {
+                            message: {
+                                'page':'edit',
+                                'tab': 'settings'
+                            },
+                            time: new Date()
+                        },
+                        bubbles: false,
+                        cancelable: true
+                    }));
+                },
                 role: 'edit_settings'
             },
             {
@@ -92,7 +166,7 @@ let menu = [
                     if (focusedWindow)
                         focusedWindow.webContents.toggleDevTools();
                 }
-            },
+            }
         ]
     },
     {
@@ -130,7 +204,7 @@ let menu = [
                 role: 'add_language'
             }
         ]
-    },
+    }
 ];
 
 module.exports = menu;

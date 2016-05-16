@@ -1,0 +1,47 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="script" href="i18n.js">
+
+<dom-module id="aoa-edit">
+    <template>
+        <style>
+            paper-tabs {
+                background-color: #0d47a1;
+                height: 60px;
+                color: #fff;
+            }
+        </style>
+        <paper-tabs selected="{{tab}}">
+            <paper-tab>{{translate('COMPANY')}}</paper-tab>
+            <paper-tab>{{translate('DRIVER')}}</paper-tab>
+            <paper-tab>{{translate('CLERK')}}</paper-tab>
+            <paper-tab>{{translate('SETTINGS')}}</paper-tab>
+        </paper-tabs>
+        <iron-pages selected="{{tab}}">
+            <div>Company</div>
+            <div>Driver</div>
+            <div>Clerk</div>
+            <div>Settings</div>
+        </iron-pages>
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: 'aoa-edit',
+        properties: {
+            tab: {
+                type: Number,
+                value: 0
+            }
+        },
+        ready: function(){
+
+        },
+        translate: function(key){
+            return i18n(key);
+        }
+    });
+</script>

@@ -1,0 +1,9 @@
+{
+  "key": "CLERK",
+  "items": [],
+  "template": {
+    "firstname": "",
+    "lastname": "",
+    "position": ""
+  }
+}

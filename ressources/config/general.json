@@ -1,0 +1,18 @@
+{
+  "lang": "en",
+  "dropdowns": [
+    "companies",
+    "drivers",
+    "clerks"
+  ],
+  "sites": {
+    "main": 0,
+    "edit": 1
+  },
+  "tabs": {
+    "company": 0,
+    "driver": 1,
+    "clerk": 2,
+    "settings": 3
+  }
+}

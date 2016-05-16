@@ -1,10 +1,11 @@
 {
   "APP_NAME": "Attestion of Activities",
+  "MENU_HOME": "Home",
   "MENU_EDIT": "Edit",
   "COMPANY": "Company",
   "DRIVER": "Driver",
   "CLERK": "Clerk",
-  "MENU_SETTINGS": "Settings",
+  "SETTINGS": "Settings",
   "MENU_GENERATE": "Generate",
   "MENU_GENERATE_AND_PRINT": "Generate and Print",
   "ADD": "Add",

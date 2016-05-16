@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <script>
-        const remote = require('electron').remote;
+        const electron = require('electron');
+        const remote = electron.remote;
         const Menu = remote.Menu;
         const template_menu = require('../modules/menu.js');
         const i18n = require('../modules/i18n.js').i18n;
@@ -11,161 +12,43 @@
         let menu = Menu.buildFromTemplate(template_menu);
         Menu.setApplicationMenu(menu);
 
-        let dropdowns = remote.getGlobal('config')['dropdowns'];
+        let dropdowns = [];
 
-        function init(){
-            initDropdowns();
-            addRow();
-            addMore();
-        }
+        document.addEventListener('DOMContentLoaded', function(){
+            dropdowns.push(electron.remote.getGlobal('companies'));
+            dropdowns.push(electron.remote.getGlobal('drivers'));
+            dropdowns.push(electron.remote.getGlobal('clerks'));
 
-        function initDropdowns(){
-            for(var i in dropdowns){
-                var clone = document.importNode(document.querySelector('#template_dropdown').content, true);
+            document.querySelector('aoa-main').dropdowns = dropdowns;
+        });
 
-                var label = clone.querySelector('label');
-                label.setAttribute('for', dropdowns[i]);
-                label.textContent = i18n(dropdowns[i].toUpperCase());
-
-                var select = clone.querySelector('select');
-                select.setAttribute('id', dropdowns[i]);
-
-                clone.querySelector('option').textContent = i18n('DROPDOWN_CHOOSE');
-
-                var options = remote.getGlobal('config')[dropdowns[i]];
-                for(var j in options){
-                    var option = document.createElement('option');
-                    option.setAttribute('value', options[j]);
-                    option.textContent = options[j];
-                    select.appendChild(option);
-                }
-
-                document.getElementById('dropdowns').appendChild(clone);
+        document.addEventListener('menu', function(event){
+            if(event.detail.message.hasOwnProperty('tab')){
+                document.querySelector('aoa-edit').tab = remote.getGlobal('config')['tabs'][event.detail.message.tab];
             }
-        }
-
-        function addRow(){
-            var clone = document.importNode(document.querySelector('#template_row').content, true);
-
-            var labels = clone.querySelectorAll('label');
-            labels[0].textContent = i18n('ROW_FROM');
-            labels[1].textContent = i18n('ROW_TO');
-
-            var inputs = clone.querySelectorAll('input');
-            inputs[0].setAttribute('name', 'time_from');
-            inputs[0].setAttribute('placeholder', i18n('ROW_TIME'));
-            inputs[1].setAttribute('name', 'date_from');
-            inputs[1].setAttribute('placeholder', i18n('ROW_DATE'));
-            inputs[2].setAttribute('name', 'time_to');
-            inputs[2].setAttribute('placeholder', i18n('ROW_TIME'));
-            inputs[3].setAttribute('name', 'date_to');
-            inputs[3].setAttribute('placeholder', i18n('ROW_DATE'));
-
-            clone.querySelector('button').textContent = i18n('ROW_REMOVE');
-
-            document.getElementById('certificates').appendChild(clone);
-        }
-
-        function deleteRow(el){
-            document.getElementById('certificates').removeChild(el.parentNode);
-        }
-
-        function addMore(){
-            var button = document.createElement('button');
-            button.classList.add('btn', 'btn-add');
-            button.textContent = i18n('ADD');
-            button.addEventListener('click', addRow);
-            document.getElementById('add_more').appendChild(button);
-        }
+            document.getElementById('sites').selected = remote.getGlobal('config')['sites'][event.detail.message.page];
+        });
     </script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="import" href="../bower_components/polymer/polymer.html">
+    <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+    <link rel="import" href="../modules/aoa-main.html">
+    <link rel="import" href="../modules/aoa-edit.html">
     <style>
         body {
             margin: 0px;
             font-family: 'Open Sans', sans-serif;
         }
-
-        #dropdowns {
-            width: 100%;
-            height: 40px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: lightgray;
-        }
-
-        #dropdowns > div > label {
-            margin-right: 5px;
-        }
-
-        #certificates {
-            height: calc(100% - 90px);
-            overflow-y: auto;
-        }
-
-        .row {
-            padding: 10px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: calc(100% - 20px);
-            border-bottom: 1px solid lightgray;
-        }
-
-        .row > input {
-            height: 20px;
-        }
-
-        .btn {
-            background: none;
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        .btn-remove {
-            border: 2px solid darkred;
-            border-radius: 5px;
-        }
-
-        #add_more {
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .btn-add {
-            border: 2px solid lightgreen;
-            border-radius: 5px;
-            font-size: 20px;
-        }
     </style>
+
 </head>
 <body>
-    <section id="dropdowns"></section>
-    <section id="certificates"></section>
-    <section id="add_more"></section>
-    <template id="template_dropdown">
-        <div>
-            <label></label>
-            <select>
-                <option style="display:none;" selected="selected"></option>
-            </select>
-        </div>
-    </template>
-    <template id="template_row">
-        <div class="row">
-            <label></label>
-            <input type="text" name="time_from">
-            <input type="date">
-            <label></label>
-            <input type="text">
-            <input type="date">
-            <button class="btn btn-remove" onclick="deleteRow(this)"></button>
-        </div>
-    </template>
-    <script>
-        init();
-    </script>
+    <iron-pages id="sites" selected="0">
+        <aoa-main></aoa-main>
+        <aoa-edit tab="0"></aoa-edit>
+    </iron-pages>
 </body>
 </html>
+<!--
+dropdowns='[{"key":"COMPANY","items":["Company A","Company B","Company C"]},{"key": "DRIVER","items":["Driver Klaus","Driver Günther"]},{"key":"CLERK","items":["Clerk Ute","Clerk Monika"]}]'
+-->

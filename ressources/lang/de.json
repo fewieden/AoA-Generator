@@ -1,10 +1,11 @@
 {
   "APP_NAME": "Freibescheinigungen",
+  "MENU_HOME": "Start",
   "MENU_EDIT": "Editieren",
   "COMPANY": "Firma",
   "DRIVER": "Fahrer",
   "CLERK": "Sachbearbeiter",
-  "MENU_SETTINGS": "Einstellungen",
+  "SETTINGS": "Einstellungen",
   "MENU_GENERATE": "Generieren",
   "MENU_GENERATE_AND_PRINT": "Generieren und Drucken",
   "ADD": "Hinzufügen",

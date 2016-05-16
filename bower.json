@@ -1,0 +1,34 @@
+{
+  "name": "aoa-generator",
+  "description": "Generator for Attestation of Activities documents (Regulation (EC) 561/2006 or the AETR)",
+  "main": "app.js",
+  "authors": [
+    "Felix Wiedenbach"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/fewieden/AoA-Generator",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-button": "PolymerElements/paper-button#^1.0.0",
+    "paper-dialog": "PolymerElements/paper-dialog#^1.0.0",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^1.0.0",
+    "paper-input": "PolymerElements/paper-input#^1.0.0",
+    "paper-progress": "PolymerElements/paper-progress#^1.0.0",
+    "paper-radio-button": "PolymerElements/paper-radio-button#^1.0.0",
+    "paper-radio-group": "PolymerElements/paper-radio-group#^1.0.0",
+    "paper-spinner": "PolymerElements/paper-spinner#^1.0.0",
+    "paper-tabs": "PolymerElements/paper-tabs#^1.0.0",
+    "paper-toast": "PolymerElements/paper-toast#^1.0.0",
+    "paper-item": "PolymerElements/paper-item#^1.2.1",
+    "paper-listbox": "PolymerElements/paper-listbox#^1.1.2",
+    "iron-pages": "PolymerElements/iron-pages#^1.0.7"
+  }
+}

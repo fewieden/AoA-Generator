@@ -1,0 +1,19 @@
+{
+  "key": "DRIVER",
+  "items": [],
+  "template": {
+    "firstname": "",
+    "lastname": "",
+    "birthdate": {
+      "day": "",
+      "month": "",
+      "year": ""
+    },
+    "licence": "",
+    "entered": {
+      "day": "",
+      "month": "",
+      "year": ""
+    }
+  }
+}
