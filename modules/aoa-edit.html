@@ -12,6 +12,11 @@
                 height: 60px;
                 color: #fff;
             }
+
+            section {
+                width: 80%;
+                margin: 0px auto;
+            }
         </style>
         <paper-tabs selected="{{tab}}">
             <paper-tab>{{translate('COMPANY')}}</paper-tab>
@@ -23,7 +28,17 @@
             <div>Company</div>
             <div>Driver</div>
             <div>Clerk</div>
-            <div>Settings</div>
+            <section id="config">
+                <paper-dropdown-menu label="{{translate('FORM_LANGUAGE')}}">
+                    <paper-listbox class="dropdown-content">
+                        <template is="dom-repeat" items="{{config.languages}}">
+                            <paper-item>{{item.language}}</paper-item>
+                        </template>
+                    </paper-listbox>
+                </paper-dropdown-menu>
+                <br/>
+                <paper-button raised on-tap="save">{{translate('FORM_SAVE')}}</paper-button>
+            </section>
         </iron-pages>
     </template>
 </dom-module>
@@ -35,13 +50,37 @@
             tab: {
                 type: Number,
                 value: 0
+            },
+            config: {
+                type: Object
             }
         },
-        ready: function(){
-
-        },
-        translate: function(key){
+        translate: function (key) {
             return i18n(key);
+        },
+        save: function (event) {
+            var type = event.target.parentNode.getAttribute('id');
+            if (type === 'config') {
+                var language = this.$[type].querySelector('paper-dropdown-menu').value;
+                var token = '';
+                for(var i = 0; i < this.config.languages.length; i++){
+                    if(this.config.languages[i].language === language){
+                        token = this.config.languages[i].token;
+                        break;
+                    }
+                }
+                document.dispatchEvent(new CustomEvent("edit", {
+                    detail: {
+                        message: {
+                            'type': type,
+                            'obj': token
+                        },
+                        time: new Date()
+                    },
+                    bubbles: false,
+                    cancelable: true
+                }));
+            }
         }
     });
 </script>

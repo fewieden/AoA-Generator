@@ -13,13 +13,15 @@
         let menu = Menu.buildFromTemplate(template_menu);
         Menu.setApplicationMenu(menu);
 
-        let dropdowns = [];
+        let dropdowns;
 
         document.addEventListener('DOMContentLoaded', function(){
+            dropdowns = [];
             dropdowns.push(electron.remote.getGlobal('company'));
             dropdowns.push(electron.remote.getGlobal('driver'));
             dropdowns.push(electron.remote.getGlobal('clerk'));
 
+            document.querySelector('aoa-edit').config = electron.remote.getGlobal('config');
             document.querySelector('aoa-main').dropdowns = dropdowns;
             document.querySelector('aoa-add').company = dropdowns[0];
             document.querySelector('aoa-add').driver = dropdowns[1];
@@ -35,6 +37,10 @@
 
         document.addEventListener('add', function(event){
             ipc.send('add', event.detail.message);
+        });
+
+        document.addEventListener('edit', function(event){
+            ipc.send('edit', event.detail.message);
         });
     </script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -59,6 +65,3 @@
     </iron-pages>
 </body>
 </html>
-<!--
-dropdowns='[{"key":"COMPANY","items":["Company A","Company B","Company C"]},{"key": "DRIVER","items":["Driver Klaus","Driver Günther"]},{"key":"CLERK","items":["Clerk Ute","Clerk Monika"]}]'
--->

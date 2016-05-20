@@ -38,5 +38,6 @@
   "FORM_LICENCE": "Licence",
   "FORM_ENTERED": "Entered Company",
   "FORM_POSITION": "Position",
-  "FORM_SAVE": "Save"
+  "FORM_SAVE": "Save",
+  "FORM_LANGUAGE": "Language"
 }

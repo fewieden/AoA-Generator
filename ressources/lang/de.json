@@ -38,5 +38,6 @@
   "FORM_LICENCE": "Lizenz",
   "FORM_ENTERED": "Firmen Eintritt",
   "FORM_POSITION": "Position",
-  "FORM_SAVE": "Speichern"
+  "FORM_SAVE": "Speichern",
+  "FORM_LANGUAGE": "Sprache"
 }

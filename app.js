@@ -12,13 +12,17 @@ global.driver = JSON.parse(fs.readFileSync('./ressources/config/driver.json', 'u
 global.clerk = JSON.parse(fs.readFileSync('./ressources/config/clerk.json', 'utf-8'));
 global.config = JSON.parse(fs.readFileSync('./ressources/config/general.json', 'utf-8'));
 
-
-//global.config = require('./ressources/config/config.json');
-
 ipc.on('add', function(event, arg){
-    console.log(arg);
     global[arg.type].items.push(arg.obj);
     fs.writeFileSync('./ressources/config/' + arg.type + '.json', JSON.stringify(global[arg.type]), 'utf-8');
+});
+
+ipc.on('edit', function(event, arg){
+    if(arg.type === 'config'){
+        global[arg.type].language = arg.obj;
+        fs.writeFileSync('./ressources/config/general.json', JSON.stringify(global[arg.type]), 'utf-8');
+        mainWindow.reload();
+    }
 });
 
 let mainWindow;

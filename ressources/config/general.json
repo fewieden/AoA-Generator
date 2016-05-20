@@ -1,5 +1,15 @@
 {
-  "lang": "en",
+  "language": "en",
+  "languages": [
+    {
+      "language": "Deutsch",
+      "token": "de"
+    },
+    {
+      "language": "English",
+      "token": "en"
+    }
+  ],
   "sites": {
     "main": 0,
     "edit": 1,
