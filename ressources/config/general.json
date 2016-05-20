@@ -1,10 +1,5 @@
 {
   "lang": "en",
-  "dropdowns": [
-    "company",
-    "driver",
-    "clerk"
-  ],
   "sites": {
     "main": 0,
     "edit": 1,
