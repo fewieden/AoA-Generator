@@ -7,20 +7,20 @@ const ipc = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;
 const fs = require('fs');
 
-global.company = JSON.parse(fs.readFileSync('./ressources/config/company.json', 'utf-8'));
-global.driver = JSON.parse(fs.readFileSync('./ressources/config/driver.json', 'utf-8'));
-global.clerk = JSON.parse(fs.readFileSync('./ressources/config/clerk.json', 'utf-8'));
-global.config = JSON.parse(fs.readFileSync('./ressources/config/general.json', 'utf-8'));
+global.company = JSON.parse(fs.readFileSync('./resources/config/company.json', 'utf-8'));
+global.driver = JSON.parse(fs.readFileSync('./resources/config/driver.json', 'utf-8'));
+global.clerk = JSON.parse(fs.readFileSync('./resources/config/clerk.json', 'utf-8'));
+global.config = JSON.parse(fs.readFileSync('./resources/config/general.json', 'utf-8'));
 
 ipc.on('add', function(event, arg){
     global[arg.type].items.push(arg.obj);
-    fs.writeFileSync('./ressources/config/' + arg.type + '.json', JSON.stringify(global[arg.type]), 'utf-8');
+    fs.writeFileSync('./resources/config/' + arg.type + '.json', JSON.stringify(global[arg.type]), 'utf-8');
 });
 
 ipc.on('edit', function(event, arg){
     if(arg.type === 'config'){
         global[arg.type].language = arg.obj;
-        fs.writeFileSync('./ressources/config/general.json', JSON.stringify(global[arg.type]), 'utf-8');
+        fs.writeFileSync('./resources/config/general.json', JSON.stringify(global[arg.type]), 'utf-8');
         mainWindow.reload();
     }
 });
