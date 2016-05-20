@@ -1,0 +1,124 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="script" href="i18n.js">
+
+<dom-module id="aoa-add">
+    <template>
+        <style>
+            paper-tabs {
+                background-color: #0d47a1;
+                height: 60px;
+                color: #fff;
+            }
+
+            section {
+                width: 80%;
+                margin: 0px auto;
+            }
+
+            .clear {clear: both;}
+
+            .mr5 {margin-right: 5%;}
+
+            .col {float: left;}
+
+            .col-20 {width: 20%;}
+
+            .col-35 {width: 35%;}
+
+            .col-75 {width: 75%;}
+
+            .col-60 {width: 60%;}
+        </style>
+        <paper-tabs selected="{{tab}}">
+            <paper-tab>{{translate('COMPANY')}}</paper-tab>
+            <paper-tab>{{translate('DRIVER')}}</paper-tab>
+            <paper-tab>{{translate('CLERK')}}</paper-tab>
+        </paper-tabs>
+        <iron-pages selected="{{tab}}">
+            <section id="company">
+                <paper-input label="{{translate('FORM_NAME')}}" field="name"></paper-input>
+                <paper-input label="{{translate('FORM_STREET')}}" field="street" class="col col-75 mr5"></paper-input>
+                <paper-input label="{{translate('FORM_HOUSE_NUMBER')}}" field="house_number" class="col col-20"></paper-input>
+                <paper-input label="{{translate('FORM_POSTCODE')}}" field="postcode" class="col col-35 mr5"></paper-input>
+                <paper-input label="{{translate('FORM_CITY')}}" field="city" class="col col-60"></paper-input>
+                <paper-input label="{{translate('FORM_COUNTRY')}}" field="country" class="clear"></paper-input>
+                <paper-input label="{{translate('FORM_PHONE')}}" field="phone"></paper-input>
+                <paper-input label="{{translate('FORM_FAX')}}" field="fax"></paper-input>
+                <paper-input label="{{translate('FORM_EMAIL')}}" field="email"></paper-input>
+                <paper-button raised on-tap="save">{{translate('FORM_SAVE')}}</paper-button>
+            </section>
+            <section id="driver">
+                <paper-input label="{{translate('FORM_FIRSTNAME')}}" field="firstname"></paper-input>
+                <paper-input label="{{translate('FORM_LASTNAME')}}" field="lastname"></paper-input>
+                <paper-input label="{{translate('FORM_BIRTHDATE')}}" type="date" field="birthdate"></paper-input>
+                <paper-input label="{{translate('FORM_LICENCE')}}" field="licence"></paper-input>
+                <paper-input label="{{translate('FORM_ENTERED')}}" type="date" field="entered"></paper-input>
+                <paper-button raised on-tap="save">{{translate('FORM_SAVE')}}</paper-button>
+            </section>
+            <section id="clerk">
+                <paper-input label="{{translate('FORM_FIRSTNAME')}}" field="firstname"></paper-input>
+                <paper-input label="{{translate('FORM_LASTNAME')}}" field="lastname"></paper-input>
+                <paper-input label="{{translate('FORM_POSITION')}}" field="position"></paper-input>
+                <paper-button raised on-tap="save">{{translate('FORM_SAVE')}}</paper-button>
+            </section>
+        </iron-pages>
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: 'aoa-add',
+        properties: {
+            tab: {
+                type: Number,
+                value: 0
+            }
+        },
+        translate: function(key){
+            return i18n(key);
+        },
+        save: function(event){
+            var type = event.target.parentNode.getAttribute('id');
+            var inputs = this.$[type].querySelectorAll('paper-input');
+            var obj = {};
+            for(var i = 0; i < inputs.length; i++){
+                var field = inputs[i].getAttribute('field');
+                if(field === 'birthdate' || field === 'entered') {
+                    if(!obj.hasOwnProperty(field)){
+                        obj[field] = {};
+                    }
+                    var date = inputs[i].value.split('-');
+                    obj[field]['year'] = date[0];
+                    obj[field]['month'] = date[1];
+                    obj[field]['day'] = date[2];
+                } else if(this[type].template.hasOwnProperty(field)) {
+                    obj[field] = inputs[i].value;
+                } else if(this[type].template.hasOwnProperty('address') && this[type].template.address.hasOwnProperty(field)){
+                    if(!obj.hasOwnProperty('address')){
+                        obj.address = {};
+                    }
+                    obj.address[field] = inputs[i].value;
+                }
+            }
+            document.dispatchEvent(new CustomEvent("add", {
+                detail: {
+                    message: {
+                        'type': type,
+                        'obj': obj
+                    },
+                    time: new Date()
+                },
+                bubbles: false,
+                cancelable: true
+            }));
+        }
+    });
+</script>

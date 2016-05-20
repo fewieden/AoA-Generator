@@ -22,5 +22,21 @@
   "ROW_TO": "Bis",
   "ROW_TIME": "Uhrzeit",
   "ROW_DATE": "Datum",
-  "ROW_REMOVE": "Entfernen"
+  "ROW_REMOVE": "Entfernen",
+  "FORM_NAME": "Name",
+  "FORM_STREET": "Straße",
+  "FORM_HOUSE_NUMBER": "Hausnummer",
+  "FORM_CITY": "Ort",
+  "FORM_POSTCODE": "Postleitzahl",
+  "FORM_COUNTRY": "Land",
+  "FORM_PHONE": "Telefon",
+  "FORM_FAX": "Fax",
+  "FORM_EMAIL": "Email",
+  "FORM_FIRSTNAME": "Vorname",
+  "FORM_LASTNAME": "Nachname",
+  "FORM_BIRTHDATE": "Geburtstag",
+  "FORM_LICENCE": "Lizenz",
+  "FORM_ENTERED": "Firmen Eintritt",
+  "FORM_POSITION": "Position",
+  "FORM_SAVE": "Speichern"
 }

@@ -58,7 +58,12 @@
                     <paper-dropdown-menu label="{{translate(dropdown.key)}}">
                         <paper-listbox class="dropdown-content">
                             <template is="dom-repeat" items="{{dropdown.items}}">
-                                <paper-item>{{item}}</paper-item>
+                                <template is="dom-if" if="{{hasName(item)}}">
+                                    <paper-item>{{item.name}}</paper-item>
+                                </template>
+                                <template is="dom-if" if="{{!hasName(item)}}">
+                                    <paper-item>{{item.firstname}} {{item.lastname}}</paper-item>
+                                </template>
                             </template>
                         </paper-listbox>
                     </paper-dropdown-menu>
@@ -111,6 +116,9 @@
         deleteRow: function(event){
             var index = this.rows.indexOf(event.model.item);
             this.splice('rows', index, 1);
+        },
+        hasName: function(item){
+            return item.hasOwnProperty('name');
         }
     });
 </script>

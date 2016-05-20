@@ -118,14 +118,53 @@ let menu = [
         submenu: [
             {
                 label: i18n('COMPANY'),
+                click: function(){
+                    document.dispatchEvent(new CustomEvent("menu", {
+                        detail: {
+                            message: {
+                                'page':'add',
+                                'tab': 'company'
+                            },
+                            time: new Date()
+                        },
+                        bubbles: false,
+                        cancelable: true
+                    }));
+                },
                 role: 'add_company'
             },
             {
                 label: i18n('DRIVER'),
+                click: function(){
+                    document.dispatchEvent(new CustomEvent("menu", {
+                        detail: {
+                            message: {
+                                'page':'add',
+                                'tab': 'driver'
+                            },
+                            time: new Date()
+                        },
+                        bubbles: false,
+                        cancelable: true
+                    }));
+                },
                 role: 'add_driver'
             },
             {
                 label: i18n('CLERK'),
+                click: function(){
+                    document.dispatchEvent(new CustomEvent("menu", {
+                        detail: {
+                            message: {
+                                'page':'add',
+                                'tab': 'clerk'
+                            },
+                            time: new Date()
+                        },
+                        bubbles: false,
+                        cancelable: true
+                    }));
+                },
                 role: 'add_clerk'
             }
         ]

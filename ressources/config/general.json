@@ -1,13 +1,14 @@
 {
   "lang": "en",
   "dropdowns": [
-    "companies",
-    "drivers",
-    "clerks"
+    "company",
+    "driver",
+    "clerk"
   ],
   "sites": {
     "main": 0,
-    "edit": 1
+    "edit": 1,
+    "add": 2
   },
   "tabs": {
     "company": 0,

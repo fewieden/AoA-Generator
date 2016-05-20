@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script>
         const electron = require('electron');
+        const ipc = electron.ipcRenderer;
         const remote = electron.remote;
         const Menu = remote.Menu;
         const template_menu = require('../modules/menu.js');
@@ -15,18 +16,25 @@
         let dropdowns = [];
 
         document.addEventListener('DOMContentLoaded', function(){
-            dropdowns.push(electron.remote.getGlobal('companies'));
-            dropdowns.push(electron.remote.getGlobal('drivers'));
-            dropdowns.push(electron.remote.getGlobal('clerks'));
+            dropdowns.push(electron.remote.getGlobal('company'));
+            dropdowns.push(electron.remote.getGlobal('driver'));
+            dropdowns.push(electron.remote.getGlobal('clerk'));
 
             document.querySelector('aoa-main').dropdowns = dropdowns;
+            document.querySelector('aoa-add').company = dropdowns[0];
+            document.querySelector('aoa-add').driver = dropdowns[1];
+            document.querySelector('aoa-add').clerk = dropdowns[2];
         });
 
         document.addEventListener('menu', function(event){
             if(event.detail.message.hasOwnProperty('tab')){
-                document.querySelector('aoa-edit').tab = remote.getGlobal('config')['tabs'][event.detail.message.tab];
+                document.querySelector('aoa-' + event.detail.message.page).tab = remote.getGlobal('config')['tabs'][event.detail.message.tab];
             }
             document.getElementById('sites').selected = remote.getGlobal('config')['sites'][event.detail.message.page];
+        });
+
+        document.addEventListener('add', function(event){
+            ipc.send('add', event.detail.message);
         });
     </script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -34,6 +42,7 @@
     <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
     <link rel="import" href="../modules/aoa-main.html">
     <link rel="import" href="../modules/aoa-edit.html">
+    <link rel="import" href="../modules/aoa-add.html">
     <style>
         body {
             margin: 0px;
@@ -46,6 +55,7 @@
     <iron-pages id="sites" selected="0">
         <aoa-main></aoa-main>
         <aoa-edit tab="0"></aoa-edit>
+        <aoa-add tab="0"></aoa-add>
     </iron-pages>
 </body>
 </html>
